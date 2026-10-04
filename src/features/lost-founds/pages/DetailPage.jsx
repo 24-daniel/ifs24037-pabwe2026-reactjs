@@ -17,7 +17,14 @@ export default function DetailPage() {
   const load = useCallback(() => { dispatch(asyncGetLostFound(id)); }, [dispatch, id]);
   useEffect(load, [load]);
 
-  if (!item) return <p className="text-slate-600">Memuat...</p>;
+  if (!item) {
+    return (
+      <div role="status">
+        <h1 className="sr-only">Memuat laporan</h1>
+        <p className="text-slate-600">Memuat...</p>
+      </div>
+    );
+  }
   const owner = item.user ?? item.author;
   const isOwner = Boolean(me) && me.id === owner?.id;
   const completed = Boolean(Number(item.is_completed));

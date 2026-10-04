@@ -5,8 +5,8 @@ import { showSuccessDialog, showSuccessToast, showErrorDialog, showWarningDialog
 vi.mock("sweetalert2", () => ({ default: { fire: vi.fn() } }));
 
 describe("toolsHelper", () => {
-  it("shows dialogs", () => {
-    showSuccessDialog("a"); showErrorDialog("b"); showWarningDialog("c"); showSuccessToast("t");
+  it("shows dialogs", async () => {
+    await showSuccessDialog("a"); await showErrorDialog("b"); await showWarningDialog("c"); await showSuccessToast("t");
     expect(Swal.fire).toHaveBeenCalledWith(expect.objectContaining({ icon: "success", text: "a" }));
     expect(Swal.fire).toHaveBeenCalledWith(expect.objectContaining({ icon: "error", text: "b" }));
     expect(Swal.fire).toHaveBeenCalledWith(expect.objectContaining({ icon: "warning", text: "c" }));
